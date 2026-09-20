@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سماء بيتنا الجديد | هاجر</title>
+    
+    <!-- خطوط عربية كلاسيكية ناعمة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-night: #0B1118;
+            --bg-card: rgba(18, 26, 36, 0.95);
+            --star-gold: #FFD166;
+            --star-glow: rgba(255, 209, 102, 0.4);
+            --flower-color: #F4A261;
+            --text-light: #F4F5F6;
+            --text-sub: #A2ABB5;
+            --accent: #E07A5F;
+            --border-soft: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--bg-night);
+            color: var(--text-light);
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .serif {
+            font-family: 'Amiri', serif;
+        }
+
+        /* الطبقة العلوية والشريط الإرشادي */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(11, 17, 24, 0.9), transparent);
+            z-index: 20;
+        }
+
+        .brand {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--star-gold);
+            letter-spacing: 0.5px;
+        }
+
+        .counter-badge {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--border-soft);
+            padding: 0.35rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        .counter-badge span {
+            color: var(--star-gold);
+            font-weight: 700;
+        }
+
+        /* رسالة الترحيب */
+        .intro-hero {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 5.5rem 1.5rem 2rem;
+            max-width: 650px;
+            margin: 0 auto;
+            pointer-events: none;
+        }
+
+        .intro-hero h1 {
+            font-size: 2.1rem;
+            color: var(--text-light);
+            margin-bottom: 0.6rem;
+            font-weight: 700;
+        }
+
+        .intro-hero p {
+            color: var(--text-sub);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* قبة السماء التفاعلية */
+        .sky-canvas {
+            position: relative;
+            width: 100%;
+            height: 900px;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* كائن النجمة */
+        .celestial-node {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 15;
+            transition: transform 0.25s ease;
+        }
+
+        .celestial-node:hover {
+            transform: scale(1.2);
+        }
+
+        /* شكل النجمة الافتراضي */
+        .node-symbol {
+            width: 14px;
+            height: 14px;
+            background: var(--star-gold);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            box-shadow: 0 0 12px var(--star-gold);
+            animation: pulse-glow 2.5s infinite alternate ease-in-out;
+            transition: all 0.4s ease;
+        }
+
+        /* بعد الفتح: تتحول لزهرة ذهبية */
+        .celestial-node.discovered .node-symbol {
+            width: 20px;
+            height: 20px;
+            background: var(--flower-color);
+            clip-path: polygon(50% 0%, 65% 25%, 100% 35%, 75% 60%, 80% 100%, 50% 80%, 20% 100%, 25% 60%, 0% 35%, 35% 25%);
+            box-shadow: 0 0 18px var(--flower-color);
+            animation: rotate-soft 8s infinite linear;
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            100% { transform: scale(1.15); opacity: 1; }
+        }
+
+        @keyframes rotate-soft {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* النافذة المنبثقة للرسالة (Modal) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 8, 12, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .message-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 480px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-overlay.active .message-card {
+            transform: translateY(0);
+        }
+
+        .card-category {
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--star-gold);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .btn-close {
+            background: transparent;
+            border: 1px solid var(--border-soft);
+            color: var(--text-sub);
+            padding: 0.6rem 2rem;
+            border-radius: 4px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-close:hover {
+            border-color: var(--star-gold);
+            color: var(--star-gold);
+        }
+
+        /* فوتر */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand serif">بيتنا الهادئ</div>
+        <div class="counter-badge">النجمات المضاءة: <span id="starCounter">0</span> / 18</div>
+    </header>
+
+    <div class="intro-hero">
+        <h1 class="serif">سماء بيتنا الجديد</h1>
+        <p>كل نجمة تضيء هنا تخبئ لكِ خاطرة، وعداً، أو كلمة من قلبي.. اضغطي على النجمات لتفتحي أمانيّ لكِ في أيامنا القادمة.</p>
+    </div>
+
+    <!-- فضاء النجوم -->
+    <main class="sky-canvas" id="skyArea"></main>
+
+    <!-- النافذة المنبثقة -->
+    <div class="modal-overlay" id="messageModal">
+        <div class="message-card">
+            <div class="card-category" id="msgCategory">وعد من القلب</div>
+            <div class="card-content serif" id="msgText">...</div>
+            <button class="btn-close" onclick="closeModal()">إغلاق</button>
+        </div>
+    </div>
+
+    <footer>
+        <p class="serif">عهدٌ بالسكينة، والرحمة، وحياة بما يرضي الله | عبد الرحمن</p>
+    </footer>
+
+    <script>
+        // مصفوفة الرسائل (18 رسالة وبيت شعر بأسلوب عبد الرحمن الصادق والبسيط)
+        const messages = [
+            { category: "أول العهد", text: "نورتِ بيتك ومطرحك يا هاجر.. من اللحظة دي إنتِ صاحبة المكان، وسكينته، وأمانه الأول." },
+            { category: "سكينة", text: "ما تمنيت من الدنيا جاهاً ولا زحاماً.. كل ما تمنيته كان بيتاً هادئاً، تقياً، نعيش فيه بالود والرضا ونكون لبعضنا سنداً." },
+            { category: "شعر لكِ", text: "أَتَيْتِ إِلَى فُؤَادِي كَالسَّكِينَةْ.. فَكُنْتِ النُّورَ فِي تِلْكَ المَدِينَةْ\nرَفِيقَةَ رِحْلَتِي، وَأَمَانَ رُوحِي.. وَمَنْ دَاوَتْ بِطِيبَتِهَا جُرُوحِي." },
+            { category: "وعد بالرفق", text: "أعدكِ أن أكون لكِ ظهراً لا يميل، وألا أثقل عليكِ بما لا تطيقين، وأن نقتسم هموم الدنيا قبل أفراحها." },
+            { category: "ذكريات السعي", text: "كل مسمار وكل تفصيلة تعبنا فيها في الشقة دي، كان بيهون لمجرد إني بتخيل إنها هتجمعنا في راحة وأمان." },
+            { category: "حقيقة المشاعر", text: "أنا رجل قليل الكلام ولا أجيد تزييف العبارات، لكن يشهد الله أن مكانتكِ في قلبي لا يشارككِ فيها أحد." },
+            { category: "شعر لكِ", text: "بَنَيْنَا البَيْتَ بِالآيَاتِ حُبّاً.. وَقُلْنَا: يَا رَحِيمُ، أَدِمْهُ قُرْبَا\nفَهَاكِ اليَدَّ عَهْداً لَنْ يَحِيدَا.. أَكُونُ لَكِ الأَمَانَ كَمَا أُرِيدَا." },
+            { category: "أيامنا الآتية", text: "مش عايزك تشيلي هم أي بكرة.. طول ما إحنا سوا ومع ربنا، كل صعب بيعدي وكل عثرة بنقوم منها سوا." },
+            { category: "سلام النفس", text: "أجمل ما فيكِ هو بساطة قلبك وخوفك من الله؛ وهي نعمة أحمد الله عليها في كل صلاة." },
+            { category: "شعر لكِ", text: "فَنِعْمَ الزَّوْجُ أَنْتِ، وَنِعْمَ دَارِي.. وَأَنْتِ أَمَانُ قَلْبِي وَاخْتِيَارِي." },
+            { category: "عن التفاهم", text: "وعدٌ مني: ألا ننام وفي قلب أحدنا عتبٌ على الآخر، وأن يظل الصدق لغتنا الأولى والأخيرة مهما حدث." },
+            { category: "الحياة البسيطة", text: "كوب قهوة معكِ في هدوء الليل، وبيتٌ عامرٌ بالقرآن والذكر، أثمن عندي من كل بهارج الدنيا الكاذبة." },
+            { category: "شكر وامتنان", text: "شكراً لصبركِ في كل محطة، وشكراً لأنكِ كنتِ السند الهادئ في الأيام التي ثقلت فيها المسؤوليات." },
+            { category: "عهد الأمان", text: "لن أكون سبباً في حزنكِ يوماً ما حييت؛ وستظلين في بيتي معززة، مكرمة، ومحفوظة بعون الله." },
+            { category: "خاطرة", text: "لا يهم كم تبدو الدنيا قاسية في الخارج، فالمهم هو أن نغلق باب بيتنا على سلامنا الخاص." },
+            { category: "عائلة وونس", text: "نسأل الله أن يجعل هذا البيت بذرة صالحة ومباركة، وأن نربي فيه ذرية تقية صالحة تحمل الخير والبركة." },
+            { category: "شعر لكِ", text: "خُذِي كُلَّ الرِّضَا مِنِّي عُهُوداً.. نَصُونُ لِعَهْدِنَا غَيْثاً وَجُودَا." },
+            { category: "ختام النجوم", text: "أهلاً بكِ في حياتي، وفي داري، وفي وطني الصغير.. أهلاً بـ هاجر قرة عيني." }
+        ];
+
+        // توزيع النجوم جغرافياً بنسب مئوية مريحة للموبايل والديسكتوب
+        const starCoordinates = [
+            { top: 12, left: 20 }, { top: 10, left: 75 }, { top: 18, left: 48 },
+            { top: 25, left: 15 }, { top: 28, left: 82 }, { top: 35, left: 35 },
+            { top: 38, left: 65 }, { top: 46, left: 18 }, { top: 48, left: 85 },
+            { top: 55, left: 50 }, { top: 62, left: 28 }, { top: 60, left: 72 },
+            { top: 70, left: 14 }, { top: 72, left: 86 }, { top: 78, left: 45 },
+            { top: 84, left: 24 }, { top: 86, left: 70 }, { top: 92, left: 52 }
+        ];
+
+        let openedStars = new Set();
+        const skyArea = document.getElementById('skyArea');
+        const modal = document.getElementById('messageModal');
+        const msgCategory = document.getElementById('msgCategory');
+        const msgText = document.getElementById('msgText');
+        const counterEl = document.getElementById('starCounter');
+
+        // إنشاء النجوم ديناميكياً
+        messages.forEach((msg, index) => {
+            const node = document.createElement('div');
+            node.className = 'celestial-node';
+            
+            const coords = starCoordinates[index] || { top: Math.random() * 80 + 10, left: Math.random() * 80 + 10 };
+            node.style.top = coords.top + '%';
+            node.style.left = coords.left + '%';
+
+            const symbol = document.createElement('div');
+            symbol.className = 'node-symbol';
+            node.appendChild(symbol);
+
+            node.addEventListener('click', () => {
+                openMessage(msg, index, node);
+            });
+
+            skyArea.appendChild(node);
+        });
+
+        function openMessage(msg, index, nodeElement) {
+            msgCategory.textContent = msg.category;
+            msgText.innerText = msg.text;
+            modal.classList.add('active');
+
+            if (!openedStars.has(index)) {
+                openedStars.add(index);
+                nodeElement.classList.add('discovered');
+                counterEl.textContent = openedStars.size;
+            }
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // إغلاق النافذة عند الضغط على الخلفية الداكنة
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
