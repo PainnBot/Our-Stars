@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سماء بيتنا الجديد | هاجر</title>
+    <title>سماء هاجر | سكن وميثاق</title>
     
-    <!-- خطوط عربية كلاسيكية ناعمة -->
+    <!-- خطوط عربية فاخرة -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-night: #0B1118;
-            --bg-card: rgba(18, 26, 36, 0.95);
-            --star-gold: #FFD166;
-            --star-glow: rgba(255, 209, 102, 0.4);
-            --flower-color: #F4A261;
-            --text-light: #F4F5F6;
-            --text-sub: #A2ABB5;
-            --accent: #E07A5F;
-            --border-soft: rgba(255, 255, 255, 0.1);
+            --bg-night: #0D0B14;
+            --bg-card: rgba(22, 18, 32, 0.95);
+            --gold-warm: #F3C98B;
+            --rose-accent: #E29578;
+            --rose-petal: #DDA15E;
+            --text-light: #FAF8F5;
+            --text-muted: #B8B0C0;
+            --border-glow: rgba(243, 201, 139, 0.25);
         }
 
         * {
@@ -32,7 +31,7 @@
         }
 
         body {
-            background: var(--bg-night);
+            background: radial-gradient(circle at 50% 20%, #1D152B 0%, var(--bg-night) 100%);
             color: var(--text-light);
             font-family: 'Cairo', sans-serif;
             min-height: 100vh;
@@ -44,130 +43,155 @@
             font-family: 'Amiri', serif;
         }
 
-        /* الطبقة العلوية والشريط الإرشادي */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.2rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to bottom, rgba(11, 17, 24, 0.9), transparent);
-            z-index: 20;
-        }
-
-        .brand {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--star-gold);
-            letter-spacing: 0.5px;
-        }
-
-        .counter-badge {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid var(--border-soft);
-            padding: 0.35rem 0.9rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-sub);
-        }
-
-        .counter-badge span {
-            color: var(--star-gold);
-            font-weight: 700;
-        }
-
-        /* رسالة الترحيب */
-        .intro-hero {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 5.5rem 1.5rem 2rem;
-            max-width: 650px;
-            margin: 0 auto;
-            pointer-events: none;
-        }
-
-        .intro-hero h1 {
-            font-size: 2.1rem;
-            color: var(--text-light);
-            margin-bottom: 0.6rem;
-            font-weight: 700;
-        }
-
-        .intro-hero p {
-            color: var(--text-sub);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        /* قبة السماء التفاعلية */
-        .sky-canvas {
-            position: relative;
-            width: 100%;
-            height: 900px;
-            max-width: 950px;
-            margin: 0 auto;
-        }
-
-        /* كائن النجمة */
-        .celestial-node {
-            position: absolute;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 15;
-            transition: transform 0.25s ease;
-        }
-
-        .celestial-node:hover {
-            transform: scale(1.2);
-        }
-
-        /* شكل النجمة الافتراضي */
-        .node-symbol {
-            width: 14px;
-            height: 14px;
-            background: var(--star-gold);
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            box-shadow: 0 0 12px var(--star-gold);
-            animation: pulse-glow 2.5s infinite alternate ease-in-out;
-            transition: all 0.4s ease;
-        }
-
-        /* بعد الفتح: تتحول لزهرة ذهبية */
-        .celestial-node.discovered .node-symbol {
-            width: 20px;
-            height: 20px;
-            background: var(--flower-color);
-            clip-path: polygon(50% 0%, 65% 25%, 100% 35%, 75% 60%, 80% 100%, 50% 80%, 20% 100%, 25% 60%, 0% 35%, 35% 25%);
-            box-shadow: 0 0 18px var(--flower-color);
-            animation: rotate-soft 8s infinite linear;
-        }
-
-        @keyframes pulse-glow {
-            0% { transform: scale(0.9); opacity: 0.7; }
-            100% { transform: scale(1.15); opacity: 1; }
-        }
-
-        @keyframes rotate-soft {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* النافذة المنبثقة للرسالة (Modal) */
-        .modal-overlay {
+        /* خلفية البتلات المتساقطة الناعمة */
+        .ambient-glow {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(5, 8, 12, 0.75);
+            pointer-events: none;
+            background: radial-gradient(circle at 80% 80%, rgba(226, 149, 120, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 30%, rgba(243, 201, 139, 0.06) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        /* شريط التتبع العلوي */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(13, 11, 20, 0.95), transparent);
+            z-index: 30;
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .brand-title {
+            font-size: 1.3rem;
+            color: var(--gold-warm);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .counter-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glow);
+            padding: 0.4rem 1.1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .counter-pill span {
+            color: var(--gold-warm);
+            font-weight: 700;
+        }
+
+        /* مقدمة شاعرية */
+        .hero-banner {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 6.5rem 1.5rem 1.5rem;
+            max-width: 680px;
+            margin: 0 auto;
+            pointer-events: none;
+        }
+
+        .hero-banner .tagline {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--rose-accent);
+            letter-spacing: 2px;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.3rem;
+            color: var(--text-light);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .hero-banner p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* قبة النجوم التفاعلية */
+        .constellation-sky {
+            position: relative;
+            width: 100%;
+            height: 1050px;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+        }
+
+        /* كائن النجمة والزهرة */
+        .sky-object {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 15;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .sky-object:hover {
+            transform: scale(1.3);
+        }
+
+        /* شكل النجمة المشعة */
+        .object-visual {
+            width: 15px;
+            height: 15px;
+            background: var(--gold-warm);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            filter: drop-shadow(0 0 10px rgba(243, 201, 139, 0.8));
+            animation: pulse-twinkle 3s infinite alternate ease-in-out;
+            transition: all 0.5s ease;
+        }
+
+        /* تحول النجمة لزهرة عند اكتشافها */
+        .sky-object.unlocked .object-visual {
+            width: 24px;
+            height: 24px;
+            background: var(--rose-accent);
+            clip-path: polygon(50% 0%, 65% 20%, 95% 20%, 75% 50%, 95% 80%, 65% 80%, 50% 100%, 35% 80%, 5% 80%, 25% 50%, 5% 20%, 35% 20%);
+            filter: drop-shadow(0 0 14px rgba(226, 149, 120, 0.9));
+            animation: blossom-spin 12s infinite linear;
+        }
+
+        @keyframes pulse-twinkle {
+            0% { transform: scale(0.85); opacity: 0.6; }
+            100% { transform: scale(1.2); opacity: 1; }
+        }
+
+        @keyframes blossom-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* النافذة المنبثقة للرسائل والقصائد */
+        .modal-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 6, 12, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -175,71 +199,79 @@
             z-index: 100;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.35s ease;
+            backdrop-filter: blur(8px);
         }
 
-        .modal-overlay.active {
+        .modal-wrap.show {
             opacity: 1;
             pointer-events: auto;
         }
 
-        .message-card {
+        .letter-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-soft);
-            border-radius: 8px;
+            border: 1px solid var(--border-glow);
+            border-radius: 10px;
             width: 100%;
-            max-width: 480px;
-            padding: 2.5rem 2rem;
+            max-width: 520px;
+            padding: 2.8rem 2.2rem 2.2rem;
             text-align: center;
             position: relative;
-            transform: translateY(20px);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(25px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
         }
 
-        .modal-overlay.active .message-card {
+        .modal-wrap.show .letter-card {
             transform: translateY(0);
         }
 
-        .card-category {
+        .badge-type {
             font-size: 0.8rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--star-gold);
-            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            color: var(--rose-accent);
+            margin-bottom: 1.2rem;
             font-weight: 600;
+            text-transform: uppercase;
         }
 
-        .card-content {
-            font-size: 1.15rem;
-            line-height: 1.8;
+        .body-letter {
+            font-size: 1.25rem;
+            line-height: 1.9;
             color: var(--text-light);
             margin-bottom: 2rem;
+            white-space: pre-line;
         }
 
-        .btn-close {
+        .poetry-style {
+            font-size: 1.35rem;
+            color: var(--gold-warm);
+            line-height: 2.1;
+        }
+
+        .btn-dismiss {
             background: transparent;
-            border: 1px solid var(--border-soft);
-            color: var(--text-sub);
-            padding: 0.6rem 2rem;
+            border: 1px solid var(--border-glow);
+            color: var(--gold-warm);
+            padding: 0.65rem 2.5rem;
             border-radius: 4px;
             font-family: 'Cairo', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
         }
 
-        .btn-close:hover {
-            border-color: var(--star-gold);
-            color: var(--star-gold);
+        .btn-dismiss:hover {
+            background: var(--gold-warm);
+            color: var(--bg-night);
+            box-shadow: 0 0 15px rgba(243, 201, 139, 0.4);
         }
 
-        /* فوتر */
         footer {
             text-align: center;
-            padding: 2rem 1rem;
-            color: var(--text-sub);
-            font-size: 0.85rem;
+            padding: 2.5rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
             z-index: 10;
@@ -248,112 +280,204 @@
 </head>
 <body>
 
+    <div class="ambient-glow"></div>
+
     <header>
-        <div class="brand serif">بيتنا الهادئ</div>
-        <div class="counter-badge">النجمات المضاءة: <span id="starCounter">0</span> / 18</div>
+        <div class="brand-title serif">سماء بيتنا | عبد الرحمن & هاجر</div>
+        <div class="counter-pill">المكتشف: <span id="openedCount">0</span> / 20</div>
     </header>
 
-    <div class="intro-hero">
-        <h1 class="serif">سماء بيتنا الجديد</h1>
-        <p>كل نجمة تضيء هنا تخبئ لكِ خاطرة، وعداً، أو كلمة من قلبي.. اضغطي على النجمات لتفتحي أمانيّ لكِ في أيامنا القادمة.</p>
+    <div class="hero-banner">
+        <span class="tagline">إلى قُرّة العين وسَكَن الروح</span>
+        <h1 class="serif">نَجماتٌ في ليلِ بَيْتِنَا</h1>
+        <p>كل نجمة هُنا ليست مجرد ضوء، بل سرٌّ، وغزلٌ، وقصيدةٌ، وموقفٌ كتبتهُ لكِ وحدكِ.. المسِي النجمات لتتفتح زهوراً في أولى ليالينا معاً.</p>
     </div>
 
-    <!-- فضاء النجوم -->
-    <main class="sky-canvas" id="skyArea"></main>
+    <!-- فضاء النجوم العشرين -->
+    <main class="constellation-sky" id="skyVault"></main>
 
-    <!-- النافذة المنبثقة -->
-    <div class="modal-overlay" id="messageModal">
-        <div class="message-card">
-            <div class="card-category" id="msgCategory">وعد من القلب</div>
-            <div class="card-content serif" id="msgText">...</div>
-            <button class="btn-close" onclick="closeModal()">إغلاق</button>
+    <!-- نافذة الرسالة -->
+    <div class="modal-wrap" id="letterModal">
+        <div class="letter-card">
+            <div class="badge-type" id="letterType">قصيدة لعينيكِ</div>
+            <div class="body-letter serif" id="letterBody">...</div>
+            <button class="btn-dismiss" onclick="hideModal()">إغلاق ومتابعة المسير</button>
         </div>
     </div>
 
     <footer>
-        <p class="serif">عهدٌ بالسكينة، والرحمة، وحياة بما يرضي الله | عبد الرحمن</p>
+        <p class="serif">صُنِعَ بحبٍ وصدقٍ لا يفنى | بَيْتُنَا الآمِن</p>
     </footer>
 
     <script>
-        // مصفوفة الرسائل (18 رسالة وبيت شعر بأسلوب عبد الرحمن الصادق والبسيط)
-        const messages = [
-            { category: "أول العهد", text: "نورتِ بيتك ومطرحك يا هاجر.. من اللحظة دي إنتِ صاحبة المكان، وسكينته، وأمانه الأول." },
-            { category: "سكينة", text: "ما تمنيت من الدنيا جاهاً ولا زحاماً.. كل ما تمنيته كان بيتاً هادئاً، تقياً، نعيش فيه بالود والرضا ونكون لبعضنا سنداً." },
-            { category: "شعر لكِ", text: "أَتَيْتِ إِلَى فُؤَادِي كَالسَّكِينَةْ.. فَكُنْتِ النُّورَ فِي تِلْكَ المَدِينَةْ\nرَفِيقَةَ رِحْلَتِي، وَأَمَانَ رُوحِي.. وَمَنْ دَاوَتْ بِطِيبَتِهَا جُرُوحِي." },
-            { category: "وعد بالرفق", text: "أعدكِ أن أكون لكِ ظهراً لا يميل، وألا أثقل عليكِ بما لا تطيقين، وأن نقتسم هموم الدنيا قبل أفراحها." },
-            { category: "ذكريات السعي", text: "كل مسمار وكل تفصيلة تعبنا فيها في الشقة دي، كان بيهون لمجرد إني بتخيل إنها هتجمعنا في راحة وأمان." },
-            { category: "حقيقة المشاعر", text: "أنا رجل قليل الكلام ولا أجيد تزييف العبارات، لكن يشهد الله أن مكانتكِ في قلبي لا يشارككِ فيها أحد." },
-            { category: "شعر لكِ", text: "بَنَيْنَا البَيْتَ بِالآيَاتِ حُبّاً.. وَقُلْنَا: يَا رَحِيمُ، أَدِمْهُ قُرْبَا\nفَهَاكِ اليَدَّ عَهْداً لَنْ يَحِيدَا.. أَكُونُ لَكِ الأَمَانَ كَمَا أُرِيدَا." },
-            { category: "أيامنا الآتية", text: "مش عايزك تشيلي هم أي بكرة.. طول ما إحنا سوا ومع ربنا، كل صعب بيعدي وكل عثرة بنقوم منها سوا." },
-            { category: "سلام النفس", text: "أجمل ما فيكِ هو بساطة قلبك وخوفك من الله؛ وهي نعمة أحمد الله عليها في كل صلاة." },
-            { category: "شعر لكِ", text: "فَنِعْمَ الزَّوْجُ أَنْتِ، وَنِعْمَ دَارِي.. وَأَنْتِ أَمَانُ قَلْبِي وَاخْتِيَارِي." },
-            { category: "عن التفاهم", text: "وعدٌ مني: ألا ننام وفي قلب أحدنا عتبٌ على الآخر، وأن يظل الصدق لغتنا الأولى والأخيرة مهما حدث." },
-            { category: "الحياة البسيطة", text: "كوب قهوة معكِ في هدوء الليل، وبيتٌ عامرٌ بالقرآن والذكر، أثمن عندي من كل بهارج الدنيا الكاذبة." },
-            { category: "شكر وامتنان", text: "شكراً لصبركِ في كل محطة، وشكراً لأنكِ كنتِ السند الهادئ في الأيام التي ثقلت فيها المسؤوليات." },
-            { category: "عهد الأمان", text: "لن أكون سبباً في حزنكِ يوماً ما حييت؛ وستظلين في بيتي معززة، مكرمة، ومحفوظة بعون الله." },
-            { category: "خاطرة", text: "لا يهم كم تبدو الدنيا قاسية في الخارج، فالمهم هو أن نغلق باب بيتنا على سلامنا الخاص." },
-            { category: "عائلة وونس", text: "نسأل الله أن يجعل هذا البيت بذرة صالحة ومباركة، وأن نربي فيه ذرية تقية صالحة تحمل الخير والبركة." },
-            { category: "شعر لكِ", text: "خُذِي كُلَّ الرِّضَا مِنِّي عُهُوداً.. نَصُونُ لِعَهْدِنَا غَيْثاً وَجُودَا." },
-            { category: "ختام النجوم", text: "أهلاً بكِ في حياتي، وفي داري، وفي وطني الصغير.. أهلاً بـ هاجر قرة عيني." }
+        // 20 محطة متكاملة ومتنوعة (أشعار كاملة، غزل، ذكريات حقيقية، عهود رجولية)
+        const starLore = [
+            {
+                type: "قصيدة السَّكَن الأولى",
+                isPoetry: true,
+                content: "أَضَاءَتْ بِكِ الأَيَّامُ بَعْدَ عَنَائِهَا\nوَحَلَّتْ عَلَى قَلْبِي كَرِيمُ سَمَائِهَا\nفَأَنْتِ رَبِيعُ البَيْتِ، أُنْسُ فُؤَادِهِ\nوَرَوْضَةُ رُوحِي حِينَ يَبْدُو ضِيَاؤُهَا"
+            },
+            {
+                type: "غزل وحقيقة",
+                isPoetry: false,
+                content: "نورتِ بيتك ومطرحك يا هاجر.. من اللحظة التي دخلتِ فيها هذا الباب، أغلقتُ خلفكِ كل تعب الدنيا. هنا سكنكِ، دلالكِ، وأمانكِ الذي لا ينقص أبداً بإذن الله."
+            },
+            {
+                type: "حكاية من ذكرياتنا",
+                isPoetry: false,
+                content: "أتذكرين حين أطلقتُ عليكِ لقب (Haru)؟ كنتُ أعلم دائماً أن وراء تلك الرقة الفائضة قلباً ناصعاً كقلب أرنوبة بريئة، استطاعت بهدوئها ولطفها أن تُروّض كل عواصف ذئبها الهادئ."
+            },
+            {
+                type: "قصيدة الميثاق الغليظ",
+                isPoetry: true,
+                content: "بَنَيْنَا عَلَى اسْمِ اللهِ صَرْحَ وِدَادِنَا\nفَلَمْ نَخْشَ فِي دَرْبِ الحَيَاةِ عَثَارَا\nأُعَاهِدُ رَبِّي أَنْ أَكُونَ لَكِ الحِمَى\nوَأَنْ تَمْلِكِي دُونَ النِّسَاءِ دِيَارَا"
+            },
+            {
+                type: "غزل في الخجل",
+                isPoetry: false,
+                content: "يشهد الله أن أرقّ وأبهى ما رأيت في حياتي، هو حمرة الخجل حين تعلو وجنتيكِ، وبساطة حديثكِ التي تغنيني عن كلام الدنيا بأسرها."
+            },
+            {
+                type: "طيف من تفاصيلك",
+                isPoetry: false,
+                content: "كوب الشاي بالنعناع في هدوء الليل، وقطعة الشوكولاتة التي تفتح أبواب الحديث.. تفاصيلكِ الصغيرة هي التي صنعت من أيامي وطناً كنت أبحث عنه منذ زمن."
+            },
+            {
+                type: "قصيدة الأمان",
+                isPoetry: true,
+                content: "لَيْلِي بِقُرْبِكِ مُشْرِقٌ وَمُعَطَّرُ\nوَحَدِيثُنَا فِي الصَّمْتِ شَهْدٌ سُكَّرُ\nيَا مَنْ غَدَتْ لِي فِي الحَيَاةِ أَمَانَةً\nقَدْرُ الحَبِيبَةِ فِي حِمَايَ مُوَقَّرُ"
+            },
+            {
+                type: "مؤرخة قلبي",
+                isPoetry: false,
+                content: "درستِ تاريخ الأمم والدول وسهرتِ الليالي من أجل كتبكِ.. واليوم نكتب معاً تاريخ بيتنا الصغير، تاريخاً لا مكان فيه للحزن، عنوانه المودة وخاتمته الرضا."
+            },
+            {
+                type: "عن أناملكِ الصابرة",
+                isPoetry: false,
+                content: "أعرف كم تُحبين الهاند ميد، وكم تملكين من الصبر لنسج كل خيطٍ بدقة.. وها أنا أضع قلبي بين يديكِ لتنسجي منه حياتنا بروحكِ وفنكِ وذوقكِ الهادئ."
+            },
+            {
+                type: "قصيدة الرضا والغنى",
+                isPoetry: true,
+                content: "كَفَانِي بِأَنَّكِ لِي مَلاَذٌ وَمَوْئِلٌ\nوَأَنَّكِ لِي عِنْدَ الشَّدَائِدِ دَارِي\nسَأَلْتُ إِلَهَ العَرْشِ حِفْظَكِ دَائِماً\nيَا سَعْدَ قَلْبِي، وَانْشِرَاحَ نَهَارِي"
+            },
+            {
+                type: "شغب العائلة الصغيرة",
+                isPoetry: false,
+                content: "بالمناسبة، قشطة ونايتي وتيمو في انتظار سيدة البيت الجديدة! كفانا مناهدة وشغباً، واليوم ستشهدين بنفسكِ كيف تذوب كل المشاغبات أمام حنانكِ."
+            },
+            {
+                type: "وعد الرجولة والستر",
+                isPoetry: false,
+                content: "أعدكِ أمام الله: لن أجعلكِ تحتاجين لأحد، ولن أسمح للدنيا أن تكسر خاطركِ، وستجدينني دائماً الملاذ الذي تلجئين إليه وأنتِ كلكِ يقين بأنه لكِ وحدكِ."
+            },
+            {
+                type: "قصيدة الوصال",
+                isPoetry: true,
+                content: "وَجَدْتُ بِعَيْنَيْكِ الأمَانَ وَرِفْعَتِي\nوَفِي قُرْبِكِ المَيْمُونِ أُنْسِي وَرَاحَتِي\nإِذَا مَا اشْتَكَتْ نَفْسِي هُمُوماً وَكُرْبَةً\nفَفِي وَجْهِكِ المَأْمُولِ تَبْرَأُ عِلَّتِي"
+            },
+            {
+                type: "ذكريات الشقة والبناء",
+                isPoetry: false,
+                content: "كل تفصيلة في هذا البيت، من ألوان الخشب، والمطبخ، إلى أدق زاوية اخترناها معاً بالبيج الهادئ، تشهد على سعينا الصادق بأن نبدأ بالحلال ونؤسس للسكون."
+            },
+            {
+                type: "ميثاق الليل والنهار",
+                isPoetry: false,
+                content: "عهدي معكِ أن نظل 'شخصاً واحداً' كما تمنينا دوماً؛ لا ننام وفي صدورنا عتب، ولا يفرق بيننا غريب، نتشارك اللقمة والضحكة وسجدات الفجر."
+            },
+            {
+                type: "قصيدة الحِصن الحصين",
+                isPoetry: true,
+                content: "سَأَحْمِيكِ بِالقَلْبِ الَّذِي أَنْتِ نَبْضُهُ\nوَأُعْطِيكِ عَهْداً صَادِقاً لَنْ أَرُدَّهُ\nفَأَنْتِ حِمَايَ وَانْتِمَائِي وَعِزَّتِي\nوَحُبُّكِ فِي صَدْرِي سَأَحْفَظُ عَهْدَهُ"
+            },
+            {
+                type: "غزل في الروح",
+                isPoetry: false,
+                content: "جمالكِ الحقيقي الذي أسرني لم يكن في الملامح وحدها، بل في ذلك القلب التقيّ الذي يخشى الله، ويستحي من الزلل، ويبحث دائماً عن الحلال الصافي."
+            },
+            {
+                type: "خاطرة المساء",
+                isPoetry: false,
+                content: "كنتُ أهرب في الماضي إلى البحر والليل لأجد الهدوء.. واليوم، بيتنا معكِ هو بحري وسمائي وهدوئي الذي لا ينتهي."
+            },
+            {
+                type: "قصيدة الختام والعهد",
+                isPoetry: true,
+                content: "خُذِي كُلَّ عُمْرِي قَدْ جَعَلْتُكِ تَاجَهُ\nفَمَا بَعْدَ هَذَا الوَصْلِ قَلْبِي بَرَاجِي\nأَرَاكِ ضِيَاءَ البَيْتِ، نُورَ صَبَاحِهِ\nوَأَنْتِ لِرُوحِي نَفْحَةٌ مِنْ سِرَاجِي"
+            },
+            {
+                type: "مفتاح الدار الأبدي",
+                isPoetry: false,
+                content: "مباركٌ عليّ أنتِ، ومباركٌ لكِ قلبي.. أهلاً بكِ في عالمنا، في وطنكِ الصغير، وفي بيتنا الذي باركه الله بالمودة والرحمة. أحبكِ يا هاجر."
+            }
         ];
 
-        // توزيع النجوم جغرافياً بنسب مئوية مريحة للموبايل والديسكتوب
-        const starCoordinates = [
-            { top: 12, left: 20 }, { top: 10, left: 75 }, { top: 18, left: 48 },
-            { top: 25, left: 15 }, { top: 28, left: 82 }, { top: 35, left: 35 },
-            { top: 38, left: 65 }, { top: 46, left: 18 }, { top: 48, left: 85 },
-            { top: 55, left: 50 }, { top: 62, left: 28 }, { top: 60, left: 72 },
-            { top: 70, left: 14 }, { top: 72, left: 86 }, { top: 78, left: 45 },
-            { top: 84, left: 24 }, { top: 86, left: 70 }, { top: 92, left: 52 }
+        // إحداثيات 20 كائناً موزعة بجمالية متوازنة هندسياً وفنياً
+        const coordinates20 = [
+            { top: 10, left: 22 }, { top: 8, left: 78 }, { top: 16, left: 50 },
+            { top: 23, left: 14 }, { top: 21, left: 84 }, { top: 30, left: 36 },
+            { top: 32, left: 66 }, { top: 40, left: 18 }, { top: 42, left: 82 },
+            { top: 48, left: 50 }, { top: 56, left: 28 }, { top: 58, left: 72 },
+            { top: 66, left: 12 }, { top: 68, left: 88 }, { top: 74, left: 40 },
+            { top: 76, left: 62 }, { top: 83, left: 24 }, { top: 85, left: 76 },
+            { top: 92, left: 50 }, { top: 96, left: 32 }
         ];
 
-        let openedStars = new Set();
-        const skyArea = document.getElementById('skyArea');
-        const modal = document.getElementById('messageModal');
-        const msgCategory = document.getElementById('msgCategory');
-        const msgText = document.getElementById('msgText');
-        const counterEl = document.getElementById('starCounter');
+        let discoveredStars = new Set();
+        const skyVault = document.getElementById('skyVault');
+        const modal = document.getElementById('letterModal');
+        const letterType = document.getElementById('letterType');
+        const letterBody = document.getElementById('letterBody');
+        const counter = document.getElementById('openedCount');
 
-        // إنشاء النجوم ديناميكياً
-        messages.forEach((msg, index) => {
-            const node = document.createElement('div');
-            node.className = 'celestial-node';
+        // بناء النجوم
+        starLore.forEach((item, index) => {
+            const star = document.createElement('div');
+            star.className = 'sky-object';
             
-            const coords = starCoordinates[index] || { top: Math.random() * 80 + 10, left: Math.random() * 80 + 10 };
-            node.style.top = coords.top + '%';
-            node.style.left = coords.left + '%';
+            const pos = coordinates20[index];
+            star.style.top = pos.top + '%';
+            star.style.left = pos.left + '%';
 
-            const symbol = document.createElement('div');
-            symbol.className = 'node-symbol';
-            node.appendChild(symbol);
+            const visual = document.createElement('div');
+            visual.className = 'object-visual';
+            star.appendChild(visual);
 
-            node.addEventListener('click', () => {
-                openMessage(msg, index, node);
+            star.addEventListener('click', () => {
+                showLetter(item, index, star);
             });
 
-            skyArea.appendChild(node);
+            skyVault.appendChild(star);
         });
 
-        function openMessage(msg, index, nodeElement) {
-            msgCategory.textContent = msg.category;
-            msgText.innerText = msg.text;
-            modal.classList.add('active');
+        function showLetter(item, index, starEl) {
+            letterType.textContent = item.type;
+            letterBody.textContent = item.content;
 
-            if (!openedStars.has(index)) {
-                openedStars.add(index);
-                nodeElement.classList.add('discovered');
-                counterEl.textContent = openedStars.size;
+            if (item.isPoetry) {
+                letterBody.classList.add('poetry-style');
+            } else {
+                letterBody.classList.remove('poetry-style');
+            }
+
+            modal.classList.add('show');
+
+            if (!discoveredStars.has(index)) {
+                discoveredStars.add(index);
+                starEl.classList.add('unlocked');
+                counter.textContent = discoveredStars.size;
             }
         }
 
-        function closeModal() {
-            modal.classList.remove('active');
+        function hideModal() {
+            modal.classList.remove('show');
         }
 
-        // إغلاق النافذة عند الضغط على الخلفية الداكنة
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
-                closeModal();
+                hideModal();
             }
         });
     </script>
